@@ -1,23 +1,30 @@
-#ci.gocd.yaml
-# format_version: 9
+format_version: 10
 pipelines:
-  mypipe1: # definition of mypipe1 pipeline
-    group: mygroup1 # note that the group name can contain only of alphanumeric & underscore characters
-    display_order: 10
-    label_template: "${mygit[:8]}"
+  pipeline01:
+    group: mygroup1
+    label_template: ${COUNT}
     lock_behavior: none
+    display_order: -1
     materials:
-      mygit: # this is the name of material, the name can contain only of alphanumeric & underscore characters
-        # keyword git says about type of material and url at once
+      git-e410dfc:
         git: https://github.com/datdd93/gocd_test.git
+        shallow_clone: false
+        auto_update: true
         branch: main
-    stages: # list of stages in order
-      - stage01: # name of stage
-          clean_workspace: true
-          jobs:
-            job01: # name of the job
-              tasks: # ordered list of tasks to execute in job csharp
-               - exec: # indicates type of task
-                   command: echo
-                   arguments:
-                    - "Dat dep zai 123"
+    stages:
+    - stage01:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          job01:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - Dat Dep Trai
+                command: echo
+                run_if: passed
