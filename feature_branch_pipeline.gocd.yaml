@@ -1,0 +1,27 @@
+format_version: 10
+pipelines:
+  feature_branch_pipeline:
+    group: mygroup01
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      gocd_test_scm:
+        scm: 6acc644a-6252-40d8-a3e2-9b74f0f258ea
+    stages:
+    - stage_01:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          job_01:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - Test feature branch pipeline + $(date)
+                command: echo
+                run_if: passed
