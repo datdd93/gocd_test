@@ -22,6 +22,6 @@ pipelines:
             tasks:
             - exec:
                 arguments:
-                - Test feature branch pipeline + $(date)
+                - $(date)
                 command: echo
                 run_if: passed
