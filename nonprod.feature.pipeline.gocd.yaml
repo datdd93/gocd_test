@@ -1,7 +1,7 @@
 # format_version: 9
 pipelines:
-  mypipe1: # definition of mypipe1 pipeline
-    group: mygroup1 # note that the group name can contain only of alphanumeric & underscore characters
+  mypipe01: # definition of mypipe1 pipeline
+    group: mygroup01 # note that the group name can contain only of alphanumeric & underscore characters
     display_order: 10
     label_template: "${mygit[:8]}"
     lock_behavior: none
