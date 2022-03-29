@@ -20,4 +20,4 @@ pipelines:
                - exec: # indicates type of task
                    command: echo
                    arguments:
-                    - "Dat dep zai"
+                    - "Dat dep zai 123"
