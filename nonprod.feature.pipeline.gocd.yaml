@@ -1,18 +1,19 @@
-format_version: 10
+# format_version: 9
 pipelines:
-  pipelone_01:
-    group: mygroup1
-    label_template: ${COUNT}
+  mypipe1: # definition of mypipe1 pipeline
+    group: mygroup1 # note that the group name can contain only of alphanumeric & underscore characters
+    display_order: 10
+    label_template: "${mygit[:8]}"
     lock_behavior: none
-    display_order: -1
     materials:
-      gocd_test:
+      mygit: # this is the name of material, the name can contain only of alphanumeric & underscore characters
+        # keyword git says about type of material and url at once
         git: https://github.com/datdd93/gocd_test.git
         shallow_clone: false
         auto_update: true
         branch: main
-    stages:
-    - stage_01:
+    stages: # list of stages in order
+      - stage01: # name of stage
         fetch_materials: true
         keep_artifacts: false
         clean_workspace: false
@@ -20,11 +21,9 @@ pipelines:
           type: success
           allow_only_on_success: false
         jobs:
-          job_01:
-            timeout: 0
-            tasks:
-            - exec:
-                arguments:
-                - DatDepZai
-                command: echo
-                run_if: passed
+          job01: # name of the job
+            tasks: # ordered list of tasks to execute in job csharp
+              - exec: # indicates type of task
+                  command: echo
+                  arguments:
+                  - "Dat dep zai 123"
